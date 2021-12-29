@@ -1,7 +1,7 @@
 const pool = require('../../config/database')
 
 module.exports = {
-    create : (data, callback) => {
+    createAdminCentre : (data, callback) => {
         pool.query(
             `INSERT INTO admin_centre(nom, prenom, email, password) 
             VALUES (?, ?, ?, ?)`,
@@ -20,7 +20,7 @@ module.exports = {
             }
         )
     },
-    getUsers : callback => {
+    getAdminCentres : callback => {
         pool.query(`SELECT * FROM admin_centre`,
         [],
         (error, results, fields) => {
@@ -30,7 +30,7 @@ module.exports = {
             return callback(null, results);
         })
     },
-    getUserByUserId : (id, callback) => {
+    getAdminCentreById : (id, callback) => {
         pool.query(`SELECT * FROM admin_centre where id= ?`,
         [id],
         (error, results, fields) => {
@@ -40,7 +40,7 @@ module.exports = {
             return callback(null, results[0]);
         })
     },
-    updateUser : (data, callback) => {
+    updateAdminCentre : (data, callback) => {
         pool.query(`update admin_centre set nom=? , prenom=? , email=? , password=? where id=?`,
         [
             data.nom,
@@ -57,7 +57,7 @@ module.exports = {
             }
         )
     },
-    deleteUser : (data, callback) => {
+    deleteAdminCentre : (data, callback) => {
         pool.query(`delete from admin_centre where id=?`, 
         [data.id],
         (error, results, fields) => {
@@ -68,7 +68,7 @@ module.exports = {
         }
         )
     },
-    getUserByUserEmail : (email , callback) => {
+    getAdminCentreByEmail : (email , callback) => {
         pool.query(`select * from admin_centre where email = ?`,
         [email],
         (error, results, fields) => {
