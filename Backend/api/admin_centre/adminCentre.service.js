@@ -63,6 +63,18 @@ module.exports = {
             }
             return callback(null, results)
         })
+    },
+    getAdminCentreByEmail : (email , callback) => {
+        pool.query(`select * from admin_centre where email = ?`,
+        [email],
+        (error, results, fields) => {
+            if (error) {
+                callback(error);
+            }
+            return callback(null, results[0])
+        }
+        )
     }
+    
     
 }

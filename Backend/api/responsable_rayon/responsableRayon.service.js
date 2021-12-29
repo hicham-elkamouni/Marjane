@@ -11,4 +11,15 @@ module.exports = {
             return callback(null, results);
         })
     },
+    getRespRayonByEmail: (email, callback) => {
+        pool.query(`SELECT * FROM responsable_rayon where email = ?`,
+        [email], 
+        (error, results, fields) => {
+            if(error) {
+                callback(error);
+            }
+            return callback(null, results[0]);
+        }
+        )
+    }
 }
