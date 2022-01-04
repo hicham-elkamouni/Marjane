@@ -2,7 +2,8 @@ const pool = require('../../config/database')
 
 module.exports = {
     getPromos : callback => {
-        pool.query(`SELECT * FROM promo WHERE now() BETWEEN de AND a`,
+        pool.query(`SELECT * FROM promo WHERE now() BETWEEN de AND a and (statut='en cours' OR statut='non visible')
+        `,
         [],
         (error, results, fields) => {
             if(error) {
