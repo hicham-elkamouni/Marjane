@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
           }else {
             console.log("email or password are incorrect");
           }
-  
+          
         }else{
           console.log("inside responsable rayon")
           let login = await ResponsableRayon.login(loginForm.email.value, loginForm.password.value);
