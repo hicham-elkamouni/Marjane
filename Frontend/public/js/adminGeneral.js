@@ -1,6 +1,7 @@
 import router from "./routes/adminGeneral.js";
 const adminsCentreBtn = document.getElementById("adminsCentreBtn")
 const promtionsBtn = document.getElementById("promtionsBtn")
+const logsBtn = document.getElementById("logsBtn")
 
 window.addEventListener("DOMContentLoaded", (event) => {
   console.log("inside domContentLoaded");
@@ -13,14 +14,21 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 adminsCentreBtn.addEventListener("click",(e)=> {
     e.preventDefault();
-    let content1 = router("adminsCentreList");
-    document.querySelector(".content-container").innerHTML = content1
+    let content = router("adminsCentreList");
+    document.querySelector(".content-container").innerHTML = content
 
 })
 
 promtionsBtn.addEventListener("click",(e)=> {
     e.preventDefault();
-    let content2 = router("promotions");
-    document.querySelector(".content-container").innerHTML = content2
+    let content = router("promotions");
+    document.querySelector(".content-container").innerHTML = content
+
+})
+
+logsBtn.addEventListener("click",(e)=> {
+    e.preventDefault();
+    let content = router("logs");
+    document.querySelector(".content-container").innerHTML = content
 
 })
