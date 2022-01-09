@@ -9,7 +9,6 @@
 
     <!-- Tailwind -->
     <link rel="stylesheet" href="../../../dist/output.css" />
-    <script src="../../../public/js/adminGeneral.js" type="module" defer></script>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
         .font-family-karla { font-family: karla; }
@@ -36,17 +35,17 @@
                 <i class="fas fa-tachometer-alt mr-3"></i>
                 Dashboard
             </a>
-            <a href="" id="adminsCentreBtn" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="user.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-sticky-note mr-3"></i>
-                Admins Centre
+                User
             </a>
             <a href="category.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-table mr-3"></i>
                 Category
             </a>
-            <a href="" id="promtionsBtn" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+            <a href="promotion.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-align-left mr-3"></i>
-                Promotions
+                Promotion
             </a>
             <a href="message.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-tablet-alt mr-3"></i>
@@ -61,7 +60,6 @@
                 Calendar
             </a>
         </nav>
-
     </aside>
 
     <div class="relative w-full flex flex-col h-screen overflow-y-hidden">
@@ -84,7 +82,7 @@
         <!-- Mobile Header & Nav -->
         <header x-data="{ isOpen: false }" class="w-full bg-sidebar py-5 px-6 sm:hidden">
             <div class="flex items-center justify-between">
-                <a href="dashboard.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
+                <a href="index.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
                 <button @click="isOpen = !isOpen" class="text-white text-3xl focus:outline-none">
                     <i x-show="!isOpen" class="fas fa-bars"></i>
                     <i x-show="isOpen" class="fas fa-times"></i>
@@ -93,7 +91,7 @@
 
             <!-- Dropdown Nav -->
             <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                <a href="dashboard.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="index.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
                     <i class="fas fa-tachometer-alt mr-3"></i>
                     Dashboard
                 </a>
@@ -105,7 +103,7 @@
                     <i class="fas fa-table mr-3"></i>
                     Tables
                 </a>
-                <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
+                <a href="forms.html" class="flex items-center active-nav-link text-white py-2 pl-4 nav-item">
                     <i class="fas fa-align-left mr-3"></i>
                     Forms
                 </a>
@@ -134,10 +132,63 @@
                 <i class="fas fa-plus mr-3"></i> New Report
             </button> -->
         </header>
+    
+        <div class="w-full h-screen overflow-x-hidden border-t flex flex-col">
+            <main class="w-full flex-grow p-6">
+                <h1 class="text-3xl text-black pb-6">Promotions</h1>
 
-        <!-- CONTENT CONTAINER -->
-        <div class="content-container">
-            
+                <div class="w-full mt-12">
+                    <p class="text-xl pb-3 flex items-center justify-between">
+                        <span><i class="fas fa-list mr-3"></i> table</span>
+                        <button class="w-44 bg-white cta-btn text-lg px-2 py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
+                            <i class="fas fa-plus mr-3"></i> New Promotion
+                        </button>
+                    </p>
+                    <div class="bg-white overflow-auto">
+                        <table class="text-left w-full border-collapse"> <!--Border collapse doesn't work on this site yet but it's available in newer tailwind versions -->
+                            <thead>
+                                <tr>
+                                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Name</th>
+                                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Last Name</th>
+                                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Phone</th>
+                                    <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-sm text-grey-dark border-b border-grey-light">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-grey-lighter">
+                                    <td class="py-4 px-6 border-b border-grey-light">Lian</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">Smith</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">622322662</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
+                                </tr>
+                                <tr class="hover:bg-grey-lighter">
+                                    <td class="py-4 px-6 border-b border-grey-light">Lian</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">Smith</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">622322662</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
+                                </tr>
+                                <tr class="hover:bg-grey-lighter">
+                                    <td class="py-4 px-6 border-b border-grey-light">Lian</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">Smith</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">622322662</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
+                                </tr>
+                                <tr class="hover:bg-grey-lighter">
+                                    <td class="py-4 px-6 border-b border-grey-light">Lian</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">Smith</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">622322662</td>
+                                    <td class="py-4 px-6 border-b border-grey-light">jonsmith@mail.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
+    
+            <footer class="w-full bg-white text-right p-4">
+                Copyright © 2021 <a target="_blank" href="https://" class="underline">Marjane. All Rights Reserved</a>.
+            </footer>
         </div>
         
     </div>

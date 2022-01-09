@@ -7,7 +7,6 @@ export default class AdminGeneral {
                 email : email,
                 password : password
             }
-
             let loginRes = await axios.post("http://localhost:3000/api/adminGenerale/login",loginFields);
             let loginDetails = await loginRes.data;
             return loginDetails;
