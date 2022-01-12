@@ -31,6 +31,5 @@ export default class AdminCenter {
         .catch((error) => {
           console.log(error);
         });
-  
     }
 }

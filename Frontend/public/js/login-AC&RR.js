@@ -19,7 +19,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
           if(login.success == true){
             console.log("you're logged in successfully")
-            let StoredToken = sessionStorage.getItem('token', login.token);
+            sessionStorage.setItem('token', login.token);
+            let StoredToken = sessionStorage.getItem('token');
             console.log(StoredToken);
           }else {
             console.log("email or password are incorrect");
@@ -31,7 +32,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
           console.log(login);
           if(login.success == true){
             console.log("you're logged in successfully")
-            let StoredToken = sessionStorage.getItem('token', login.token);
+            sessionStorage.setItem('token', login.token);
+            let StoredToken = sessionStorage.getItem('token');
             console.log(StoredToken);
           }else {
             console.log("email or password are incorrect");

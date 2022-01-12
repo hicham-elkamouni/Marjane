@@ -6,6 +6,8 @@ const {
     deleteAdminCentre,
     getAdminCentreByEmail
   } = require("./adminGenerale.service");
+
+  const sendMail = require("../../mail/mailer")
   
   const { genSaltSync, hashSync, compareSync } = require("bcrypt");
   const { sign } = require("jsonwebtoken")
@@ -14,6 +16,7 @@ const {
     createAdminCentre: (req, res) => {
       const body = req.body;
       const salt = genSaltSync(10);
+      const clearPassword = body.password
       body.password = hashSync(body.password, salt);
       createAdminCentre(body, (err, results) => {
         if (err) {
@@ -23,6 +26,12 @@ const {
             message: "Database connection error",
           });
         }
+        let subj = "this is your login details"
+        let msg = `
+        email : ${body.email}
+        password : ${clearPassword}
+        `
+        sendMail.mail(body.email, subj, msg)
         return res.status(200).json({
           success: true,
           data: results,

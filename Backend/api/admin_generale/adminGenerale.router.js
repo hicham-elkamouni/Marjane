@@ -9,11 +9,11 @@ const {
   const router = require("express").Router();
   const { checkToken } = require("../../auth/token_validation")
   
-  router.post("/", createAdminCentre);
-  router.get("/", checkToken,getAdminCentres);
-  router.get("/:id",checkToken,getAdminCentreById);
-  router.patch("/", checkToken,updateAdminCentre);
-  router.delete("/", checkToken,deleteAdminCentre);
+  router.post("/addAdminCentre", createAdminCentre);
+  router.get("/getAdminsCentre", getAdminCentres);
+  router.get("/getAdminsCentre/:id",getAdminCentreById);
+  router.patch("/updateAdminCentre", checkToken,updateAdminCentre);
+  router.delete("deleteAdminCentre", checkToken,deleteAdminCentre);
   router.post("/login", login);
   
   module.exports = router;
