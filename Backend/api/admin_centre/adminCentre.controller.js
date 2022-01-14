@@ -35,7 +35,6 @@ module.exports = {
     },
     createPromo: (req, res) => {
     const body = req.body;
-
         createPromos(body, (err, results) => {
             if (err) {
                 console.log(err);

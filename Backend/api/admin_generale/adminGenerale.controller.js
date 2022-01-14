@@ -92,8 +92,10 @@ const {
       })
     },
     deleteAdminCentre: (req, res) => {
-      const data = req.body;
-      deleteAdminCentre(data, (err, results)=> {
+      // const data = req.body;
+      const id = req.params.id;
+      // console.log(data)
+      deleteAdminCentre(id, (err, results)=> {
           if(err){
               console.log(err);
               return;

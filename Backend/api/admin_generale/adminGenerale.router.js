@@ -13,7 +13,8 @@ const {
   router.get("/getAdminsCentre", getAdminCentres);
   router.get("/getAdminsCentre/:id",getAdminCentreById);
   router.patch("/updateAdminCentre", checkToken,updateAdminCentre);
-  router.delete("deleteAdminCentre", checkToken,deleteAdminCentre);
+  // router.delete("/deleteAdminCentre", deleteAdminCentre);
+  router.delete("/deleteAdminCentre/:id", deleteAdminCentre);
   router.post("/login", login);
   
   module.exports = router;
