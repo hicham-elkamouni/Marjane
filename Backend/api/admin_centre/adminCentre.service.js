@@ -34,13 +34,15 @@ module.exports = {
         }
         )
     },
-    deletePromo : (data, callback) => {
-        pool.query(`delete from promo where id=?`),
-        [data.id],
+    deletePromo : (id , callback) => {
+        console.log("id you want to delete is :", id)
+        pool.query(`delete from promo where id=${id}`),
+        [id],
         (error, results, fields) => {
             if(error){
                 return callback(error);
             }
+            console.log(results);
             return callback(null, results)
         }
     },
@@ -72,6 +74,17 @@ module.exports = {
                 callback(error);
             }
             return callback(null, results[0])
+        }
+        )
+    },
+    deleteRespRayon : (id , callback) => {
+        pool.query(`delete from responsable_rayon where id = ${id}`,
+        [id],
+        (error, results, fields) => {
+            if(error) {
+                return callback(error);
+            }
+            return callback(null, results)
         }
         )
     }

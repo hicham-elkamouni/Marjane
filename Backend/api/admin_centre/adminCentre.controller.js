@@ -1,4 +1,4 @@
-const { createPromos, createRespRayon, deletePromo, getAllPromos, getAllRaspRayons , getAdminCentreByEmail } = require("./adminCentre.service");
+const { createPromos, createRespRayon, deletePromo, getAllPromos, getAllRaspRayons , getAdminCentreByEmail , deleteRespRayon } = require("./adminCentre.service");
 
 const sendMail = require("../../mail/mailer")
 
@@ -50,23 +50,23 @@ module.exports = {
         });
     },
     deletePromo : (req , res ) => {
-          const data = req.body;
-          deletePromo(data,(err, results) => {
-              if(err) {
-                  console.log(err);
-                  return;
-              }
-              if(!results) {
-                  return res.json({
-                      success : false,
-                      message : "Record Not Found"
-                  })
-              }
-              return res.json({
-                  succes : true,
-                  message : "Promo deleted successfully"
-              })
-          }) 
+        const id = req.params.id;
+        deletePromo(id,(err, results) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            if(!results) {
+                return res.json({
+                    success : false,
+                    message : "Record Not Found"
+                })
+            }
+            return res.json({
+                succes : true,
+                message : "Promo deleted successfully"
+            })
+        }) 
     },
     getAllPromos : (req, res) => {
         getAllPromos((err, results) => {
@@ -136,6 +136,25 @@ module.exports = {
               })
           }      
         })
-      }
+    },
+    deleteRespRayon : (req, res) => {
+        const id = req.params.id;
+        deleteRespRayon(id, (err, results)=>{
+            if(err){
+                console.log(err)
+                return;
+            }
+            if(!results){
+                return res.json({
+                    succes : false,
+                    message : "Record Not Found"
+                })
+            }
+            return res.json({
+                sucess : true,
+                message : "Record deleted successfully"
+            });
+        })
+    }
 
 };

@@ -2,6 +2,7 @@ const BASE_URL = "http://localhost:3000/api/adminCentre/"
 
 export default class AdminCenter {
   
+    // LoGIN 
     static login = async (email , password) => {
       try {
         console.log("inside login admin center")
@@ -19,6 +20,7 @@ export default class AdminCenter {
       }
     }
 
+    // GET ALL RESPONSABLE RAYON
     static getAllRespRayons = async () => {
       console.log("inside getAllRespRayons method admin center");
       try {
@@ -31,23 +33,24 @@ export default class AdminCenter {
 
     }
 
-    
+    // ADD RESPONSABLE RAYON
     static addRespRayon = async (respRayonFields) => {
       console.log("inside add admin centre method admin centre");
       try {
-        let res = await axios.post(BASE_URL+"addAdminCentre",respRayonFields);
+        let res = await axios.post(BASE_URL+"createRespRayon",respRayonFields);
         let resDetails = await res.data;
         return resDetails;
       }catch (e) {
         console.error(e);
       }
     }
-    
+
+  // DELETE RESPONSABLE RAYON
   static deleteRespRayon = async (id) => {
     console.log("inside delete responsable rayon  admin centre");
     let parsedId = parseInt(id)
     try {
-      let res = await axios.delete(BASE_URL+"deleteAdminCentre/"+parsedId);
+      let res = await axios.delete(BASE_URL+"deleteRespRayon/"+parsedId);
       let resDetails = await res.data;
       console.log(resDetails);
       return resDetails;
@@ -81,8 +84,8 @@ export default class AdminCenter {
   }
   
   // DELETE PROMO
-  static deleteRespRayon = async (id) => {
-    console.log("inside delete responsable rayon  admin centre");
+  static deletePromo = async (id) => {
+    console.log("inside delete Promo  admin centre");
     let parsedId = parseInt(id)
     try {
       let res = await axios.delete(BASE_URL+"deleteAdminCentre/"+parsedId);
