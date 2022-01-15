@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Admin Template</title>
+    <title>ADMIN CENTRE DASHBOARD</title>
     <meta name="author" content="David Grzyb">
     <meta name="description" content="">
 
@@ -25,24 +25,18 @@
 <body class="bg-gray-100 font-family-karla flex">
     
     <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
-        <div class="p-6">
-            <a href="dashboard.html" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">Admin</a>
-            <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
-            </button>
+        <div class="p-4 mb-8">
+            <a href="dashboard.html" class="text-white text-cener text-2xl font-semibold uppercase hover:text-gray-300">Admin Center</a>
+            
         </div>
         <nav class="text-white text-base font-semibold pt-3">
             <a href="" id="adminsCentreBtn" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-sticky-note mr-3"></i>
-                Admins Centre
+                Resp Rayon
             </a>
             <a href="" id="promtionsBtn" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
                 <i class="fas fa-align-left mr-3"></i>
                 Promotions
-            </a>
-            <a href="" id="logsBtn" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                <i class="fas fa-table mr-3"></i>
-                Logs
             </a>
         </nav>
         
@@ -74,49 +68,6 @@
                     <i x-show="isOpen" class="fas fa-times"></i>
                 </button>
             </div>
-
-            <!-- Dropdown Nav -->
-            <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
-                <a href="dashboard.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-tachometer-alt mr-3"></i>
-                    Dashboard
-                </a>
-                <a href="user.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-                    <i class="fas fa-sticky-note mr-3"></i>
-                    User
-                </a>
-                <a href="tables.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-table mr-3"></i>
-                    Tables
-                </a>
-                <a href="forms.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-align-left mr-3"></i>
-                    Forms
-                </a>
-                <a href="tabs.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-tablet-alt mr-3"></i>
-                    Tabbed Content
-                </a>
-                <a href="calendar.html" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-calendar mr-3"></i>
-                    Calendar
-                </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-cogs mr-3"></i>
-                    Support
-                </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-user mr-3"></i>
-                    My Account
-                </a>
-                <a href="#" class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-                    <i class="fas fa-sign-out-alt mr-3"></i>
-                    Sign Out
-                </a>
-            </nav>
-            <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
-                <i class="fas fa-plus mr-3"></i> New Report
-            </button> -->
         </header>
         
         <!-- CONTENT CONTAINER -->

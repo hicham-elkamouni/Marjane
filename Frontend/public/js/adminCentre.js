@@ -1,5 +1,5 @@
-import AdminGeneral from "./classes/adminGeneral.js";
-import router from "./routes/adminGeneral.js";
+import adminCentre from "./classes/adminCentre.js";
+import router from "./routes/adminCentre.js";
 const adminsCentreBtn = document.getElementById("adminsCentreBtn")
 const promtionsBtn = document.getElementById("promtionsBtn")
 const logsBtn = document.getElementById("logsBtn")
@@ -12,29 +12,29 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
 
   e.preventDefault();
-  await adminCentreData();
+  await respRayonData();
 
   // ADD NEW ADMIN CENTER
-  addForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    // getting admin center fields 
-    let AdminCentreFields = {
-      nom : addForm.lastName.value,
-      prenom : addForm.firstName.value,
-      email : addForm.email.value,
-      password : addForm.password.value,
-      status : "active"
-    }
+  // addForm.addEventListener('submit', async (e) => {
+  //   e.preventDefault();
+  //   // getting admin center fields 
+  //   let AdminCentreFields = {
+  //     nom : addForm.lastName.value,
+  //     prenom : addForm.firstName.value,
+  //     email : addForm.email.value,
+  //     password : addForm.password.value,
+  //     status : "active"
+  //   }
 
-    let newAdminCentre = await AdminGeneral.addAdminCentre(AdminCentreFields)
-    console.log(newAdminCentre);
-    location.reload(); 
-  })
+  //   let newAdminCentre = await AdminGeneral.addAdminCentre(AdminCentreFields)
+  //   console.log(newAdminCentre);
+  //   location.reload(); 
+  // })
 
 });
 
 // SHOWING ADMINE CENTER LIST IN UI
-const adminCentreData = async () => {
+const respRayonData = async () => {
 
   let content = router("adminsCentreList");
   document.querySelector(".content-container").innerHTML = content;

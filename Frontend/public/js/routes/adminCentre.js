@@ -1,14 +1,10 @@
-import adminsCentreList from "../pages/adminsCentreList.js";
-import promotions from "../pages/promotions.js";
-import overview from "../pages/overview.js";
-import logs from "../pages/logs.js";
+import respRayonList from "../pages/adminCentrePages/respRayonList.js";
+import promotions from "../pages/adminCentrePages/promotions.js";
 
 const route = (route) => {
   const routes = [
-    { path: "adminsCentreList", view: adminsCentreList },
-    { path: "promotions", view: promotions },
-    { path: "overview", view: overview },
-    { path: "logs", view: logs },
+    { path: "respRayonList", view: respRayonList },
+    { path: "promotions", view: promotions }
   ];
 
   let findView = routes.find((element) => element.path === route);

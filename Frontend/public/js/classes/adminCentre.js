@@ -2,7 +2,7 @@ const BASE_URL = "http://localhost:3000/api/adminCentre/"
 
 export default class AdminCenter {
   
-    // LoGIN 
+    // LOGIN 
     static login = async (email , password) => {
       try {
         console.log("inside login admin center")

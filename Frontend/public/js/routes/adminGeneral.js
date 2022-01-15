@@ -1,7 +1,7 @@
-import adminsCentreList from "../pages/adminsCentreList.js";
-import promotions from "../pages/promotions.js";
-import overview from "../pages/overview.js";
-import logs from "../pages/logs.js";
+import adminsCentreList from "../pages/AdminGeneralPages/adminsCentreList.js";
+import promotions from "../pages/adminCentrePages/promotions.js";
+import overview from "../pages/AdminGeneralPages/overview.js";
+import logs from "../pages/AdminGeneralPages/logs.js";
 
 const route = (route) => {
   const routes = [
