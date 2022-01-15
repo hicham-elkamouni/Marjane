@@ -2,8 +2,8 @@ const BASE_URL = "http://localhost:3000/api/adminCentre/"
 
 export default class AdminCenter {
   
-    // LOGIN 
-    static login = async (email , password) => {
+  // LOGIN 
+  static login = async (email , password) => {
       try {
         console.log("inside login admin center")
         let loginFields = 
@@ -18,10 +18,10 @@ export default class AdminCenter {
       }catch (e) {
         console.error(e);
       }
-    }
+  }
 
-    // GET ALL RESPONSABLE RAYON
-    static getAllRespRayons = async () => {
+  // GET ALL RESPONSABLE RAYON
+  static getAllRespRayons = async () => {
       console.log("inside getAllRespRayons method admin center");
       try {
           let res = await axios.get(BASE_URL+"getAllRespRayon");
@@ -31,10 +31,10 @@ export default class AdminCenter {
           console.error(e);
       }
 
-    }
+  }
 
-    // ADD RESPONSABLE RAYON
-    static addRespRayon = async (respRayonFields) => {
+  // ADD RESPONSABLE RAYON
+  static addRespRayon = async (respRayonFields) => {
       console.log("inside add admin centre method admin centre");
       try {
         let res = await axios.post(BASE_URL+"createRespRayon",respRayonFields);
@@ -43,7 +43,7 @@ export default class AdminCenter {
       }catch (e) {
         console.error(e);
       }
-    }
+  }
 
   // DELETE RESPONSABLE RAYON
   static deleteRespRayon = async (id) => {

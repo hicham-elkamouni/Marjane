@@ -110,13 +110,14 @@ closeModal.addEventListener("click", () => {
 
 
 
-
+// PROMOS SECTION
 promtionsBtn.addEventListener("click",(e)=> {
   e.preventDefault();
     let content = router("promotions");
     document.querySelector(".content-container").innerHTML = content
 })
 
+// LOGS SECTION
 logsBtn.addEventListener("click",(e)=> {
     e.preventDefault();
     let content = router("logs");

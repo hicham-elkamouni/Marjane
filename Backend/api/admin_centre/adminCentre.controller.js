@@ -7,6 +7,38 @@ const { sign } = require("jsonwebtoken")
 
 
 module.exports = {
+    login: (req, res) => {
+        const body = req.body;
+        getAdminCentreByEmail(body.email, (err, results) => {
+          if(err){
+            console.log(err);
+          }
+          if(!results){
+            return res.json({
+              success : false,
+              data : "Invalid email or password"
+            })
+          }
+          const result = compareSync(body.password, results.password);
+          console.log("this is result " + result);
+          if(result){
+            results.password = undefined;
+            const jsontoken = sign({ result : results },"qwe1234",{
+              expiresIn:"1h"
+            });
+            return res.json({
+              success : true,
+              message : "login success",
+              token: jsontoken
+            });
+          }else{
+              return res.json({
+                success : false,
+                message : "invalid email or password"
+              })
+          }      
+        })
+    },
     createRespRayon: (req, res) => {
         const body = req.body;
         const salt = genSaltSync(10);
@@ -32,6 +64,50 @@ module.exports = {
             data: results,
         });
     });
+    },
+    getAllRespRayons : (req, res) => {
+        // const token = req.headers.authorization.split(" ")[1];
+        // const decoded = decode(token);
+        getAllRaspRayons((err, results) => {
+            if(err){
+                console.log(err);
+                returrn;
+            }
+            // const log = `${decoded.result.nom} a demandé la liste des responsables`;
+            // body.comment = log;
+            // createlog.create(body, (err,results)=>{
+            //     if (err){
+            //         console.log(err);
+            //         return res.status(500).json({
+            //             success: 0,
+            //             message: "database connection error"
+            //         })
+            //     }
+            // })
+            return res.json({
+                success: true,
+                data: results
+            })
+        })
+    },
+    deleteRespRayon : (req, res) => {
+        const id = req.params.id;
+        deleteRespRayon(id, (err, results)=>{
+            if(err){
+                console.log(err)
+                return;
+            }
+            if(!results){
+                return res.json({
+                    succes : false,
+                    message : "Record Not Found"
+                })
+            }
+            return res.json({
+                sucess : true,
+                message : "Record deleted successfully"
+            });
+        })
     },
     createPromo: (req, res) => {
     const body = req.body;
@@ -80,81 +156,6 @@ module.exports = {
             })
         })
     },
-    getAllRespRayons : (req, res) => {
-        // const token = req.headers.authorization.split(" ")[1];
-        // const decoded = decode(token);
-        getAllRaspRayons((err, results) => {
-            if(err){
-                console.log(err);
-                returrn;
-            }
-            // const log = `${decoded.result.nom} a demandé la liste des responsables`;
-            // body.comment = log;
-            // createlog.create(body, (err,results)=>{
-            //     if (err){
-            //         console.log(err);
-            //         return res.status(500).json({
-            //             success: 0,
-            //             message: "database connection error"
-            //         })
-            //     }
-            // })
-            return res.json({
-                success: true,
-                data: results
-            })
-        })
-    },
-    login: (req, res) => {
-        const body = req.body;
-        getAdminCentreByEmail(body.email, (err, results) => {
-          if(err){
-            console.log(err);
-          }
-          if(!results){
-            return res.json({
-              success : false,
-              data : "Invalid email or password"
-            })
-          }
-          const result = compareSync(body.password, results.password);
-          console.log("this is result " + result);
-          if(result){
-            results.password = undefined;
-            const jsontoken = sign({ result : results },"qwe1234",{
-              expiresIn:"1h"
-            });
-            return res.json({
-              success : true,
-              message : "login success",
-              token: jsontoken
-            });
-          }else{
-              return res.json({
-                success : false,
-                message : "invalid email or password"
-              })
-          }      
-        })
-    },
-    deleteRespRayon : (req, res) => {
-        const id = req.params.id;
-        deleteRespRayon(id, (err, results)=>{
-            if(err){
-                console.log(err)
-                return;
-            }
-            if(!results){
-                return res.json({
-                    succes : false,
-                    message : "Record Not Found"
-                })
-            }
-            return res.json({
-                sucess : true,
-                message : "Record deleted successfully"
-            });
-        })
-    }
+    
 
 };
