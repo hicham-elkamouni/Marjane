@@ -2,11 +2,15 @@ import adminCentre from "./classes/adminCentre.js";
 import router from "./routes/adminCentre.js";
 const respRayonBtn = document.getElementById("respRayonBtn")
 const promtionsBtn = document.getElementById("promtionsBtn")
-const logsBtn = document.getElementById("logsBtn")
 
-const addForm = document.getElementById("addForm")
+const addRespRayonForm = document.getElementById("addRespRayonForm")
+const addPromo = document.getElementById("addPromo")
 
-const closeModal = document.querySelector("#closeModal");
+const modalRespRayon = document.getElementById('modalRespRayon')
+const modalPromo = document.getElementById('modalPromo')
+
+const closeRespRayonModal = document.querySelector("#closeRespRayonModal");
+const closePromoModal = document.querySelector("#closePromoModal");
 
 window.addEventListener("DOMContentLoaded", async (e) => {
 
@@ -15,14 +19,14 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   await respRayonData();
 
   // ADD NEW RESP RAYON
-  addForm.addEventListener('submit', async (e) => {
+  addRespRayonForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     // getting admin center fields 
     let AdminCentreFields = {
-      nom : addForm.lastName.value,
-      prenom : addForm.firstName.value,
-      email : addForm.email.value,
-      password : addForm.password.value,
+      nom : addRespRayonForm.lastName.value,
+      prenom : addRespRayonForm.firstName.value,
+      email : addRespRayonForm.email.value,
+      password : addRespRayonForm.password.value,
       status : "active"
     }
 
@@ -87,7 +91,7 @@ const respRayonData = async () => {
 
 }
 
-// DELETE AN ADMIN CENTER
+// DELETE A RESP RAYON
 window.deleteRespRayon = async (id) => {
   console.log("id you want to delete", id);
   let deletedRespRayon = await adminCentre.deleteRespRayon(id);
@@ -95,9 +99,6 @@ window.deleteRespRayon = async (id) => {
   location.reload();
 }
 
-
-
-  
 // RESP RAYON SECTION
 respRayonBtn.addEventListener("click",async (e)=> {
   e.preventDefault();
@@ -105,8 +106,6 @@ respRayonBtn.addEventListener("click",async (e)=> {
   document.querySelector(".content-container").innerHTML = content
   await respRayonData();
 })
-
-
 
 // PROMOTIONS SECTION
 promtionsBtn.addEventListener("click",async (e)=> {
@@ -172,13 +171,30 @@ const promotionsData = async () => {
 
 }
 
-
-
-window.addNew = () => {
-  modal.classList.remove('hidden');
+// DELETE A PROMO
+window.deletePromo = async (id) => {
+  console.log("id you want to delete", id);
+  let deletedRespRayon = await adminCentre.deletePromo(id);
+  console.log(deletedRespRayon);
+  location.reload();
 }
 
-closeModal.addEventListener("click", () => {
-  modal.classList.add('hidden');
+// MODAL FOR RESP RAYON
+window.addRespRayon = () => {
+  modalRespRayon.classList.remove('hidden');
+}
+
+closeRespRayonModal.addEventListener("click", () => {
+  modalRespRayon.classList.add('hidden');
+})
+
+
+// MODAL FOR PROMOTION
+window.addPromo = () => {
+  modalPromo.classList.remove('hidden');
+}
+
+closePromoModal.addEventListener("click", () => {
+  modalPromo.classList.add('hidden');
 })
 

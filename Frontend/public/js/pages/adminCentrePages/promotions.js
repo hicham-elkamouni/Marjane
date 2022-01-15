@@ -4,7 +4,7 @@ export default class promotions {
       <div class="antialiased font-sans overflow-y-scroll">
         <div class="container mx-auto px-4 sm:px-8">
         <div class="py-8">
-        <button id="addNew" class="p-4 bg-white cta-btn font-semibold mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center" onclick="addNew()">+ Promo</button>
+        <button id="addPromo" class="p-4 bg-white cta-btn font-semibold mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center" onclick="addPromo()">+ Promo</button>
             
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">

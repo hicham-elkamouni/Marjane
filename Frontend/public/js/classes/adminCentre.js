@@ -88,7 +88,7 @@ export default class AdminCenter {
     console.log("inside delete Promo  admin centre");
     let parsedId = parseInt(id)
     try {
-      let res = await axios.delete(BASE_URL+"deleteAdminCentre/"+parsedId);
+      let res = await axios.delete(BASE_URL+"deletePromo/"+parsedId);
       let resDetails = await res.data;
       console.log(resDetails);
       return resDetails;
