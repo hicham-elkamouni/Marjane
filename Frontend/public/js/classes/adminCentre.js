@@ -63,7 +63,7 @@ export default class AdminCenter {
   static addPromo = async (PromoFields) => {
     console.log("inside add admin centre method admin centre");
     try {
-      let res = await axios.post(BASE_URL+"addAdminCentre",PromoFields);
+      let res = await axios.post(BASE_URL+"createPromo",PromoFields);
       let resDetails = await res.data;
       return resDetails;
     }catch (e) {

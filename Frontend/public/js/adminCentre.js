@@ -3,8 +3,8 @@ import router from "./routes/adminCentre.js";
 const respRayonBtn = document.getElementById("respRayonBtn")
 const promtionsBtn = document.getElementById("promtionsBtn")
 
-const addRespRayonForm = document.getElementById("addRespRayonForm")
-const addPromo = document.getElementById("addPromo")
+const respRayonForm = document.getElementById("respRayonForm")
+const promoForm = document.getElementById("promoForm")
 
 const modalRespRayon = document.getElementById('modalRespRayon')
 const modalPromo = document.getElementById('modalPromo')
@@ -19,19 +19,19 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   await respRayonData();
 
   // ADD NEW RESP RAYON
-  addRespRayonForm.addEventListener('submit', async (e) => {
+  respRayonForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     // getting admin center fields 
-    let AdminCentreFields = {
-      nom : addRespRayonForm.lastName.value,
-      prenom : addRespRayonForm.firstName.value,
-      email : addRespRayonForm.email.value,
-      password : addRespRayonForm.password.value,
+    let RespRayonFields = {
+      nom : respRayonForm.lastName.value,
+      prenom : respRayonForm.firstName.value,
+      email : respRayonForm.email.value,
+      password : respRayonForm.password.value,
       status : "active"
     }
-
-    let newAdminCentre = await AdminGeneral.addAdminCentre(AdminCentreFields)
-    console.log(newAdminCentre);
+    console.log(RespRayonFields);
+    let newRespRayon = await adminCentre.addRespRayon(RespRayonFields)
+    console.log(newRespRayon);
     location.reload(); 
   })
 
@@ -171,11 +171,42 @@ const promotionsData = async () => {
 
 }
 
+// ADD NEW PROMO
+promoForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  let today = new Date();
+
+  let hours = String(today.getHours()).padStart(2, "0");
+  let minutes = String(today.getMinutes()).padStart(2, "0");
+  let seconds = String(today.getSeconds()).padStart(2, "0");
+  // YYYY-MM-DD H:M:S
+  let startingDate = promoForm.de.value + ' ' + hours + ':' + minutes + ':' + seconds
+  console.log('full date is', startingDate)
+
+  let endingDate = promoForm.a.value +' 00:00:00'
+  
+  // getting admin center fields 
+  let PromoFields = {
+    pourcentage : promoForm.poucentage.value,
+    fidelite : promoForm.fidelite.value,
+    de : startingDate,
+    a : endingDate,
+    statut : "en cours"
+  }
+  console.log(PromoFields);
+  let newPromo = await adminCentre.addPromo(PromoFields)
+  console.log(newPromo);
+  location.reload(); 
+})
+
 // DELETE A PROMO
 window.deletePromo = async (id) => {
+  console.log("heeloooooooooooooooooooooooooooo")
   console.log("id you want to delete", id);
   let deletedRespRayon = await adminCentre.deletePromo(id);
   console.log(deletedRespRayon);
+  // location.replace('http://127.0.0.1:5500/src/pages/dashboard/adminCentre.html')
   location.reload();
 }
 
