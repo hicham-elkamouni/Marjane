@@ -18,4 +18,14 @@ export default class ResponsableRayon {
        
     }
 
+    static getAllPromos = async () => {
+      console.log("inside getAllPromos method resp rayon");
+      try {
+          let res = await axios.get(BASE_URL+"getPromos");
+          let respRayonData = await res.data;
+          return respRayonData;
+      }catch (e) {
+        console.error(e);
+      }
+    }
 }

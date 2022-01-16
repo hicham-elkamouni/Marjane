@@ -4,7 +4,7 @@ const route = (route) => {
   const routes = [
     { path: "promotions", view: promotions }
   ];
-
+  console.warn(route);
   let findView = routes.find((element) => element.path === route);
   console.log(findView);
 

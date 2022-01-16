@@ -1,7 +1,7 @@
-import adminCentre from "./classes/adminCentre.js";
-import router from "./routes/adminCentre.js";
+import responsableRayon from "./classes/responsableRayon.js";
+import router from "./routes/responsableRayon.js";
 const adminsCentreBtn = document.getElementById("adminsCentreBtn")
-const promtionsBtn = document.getElementById("promtionsBtn")
+const promotionsBtn = document.getElementById("promotionsBtn")
 const logsBtn = document.getElementById("logsBtn")
 
 const addForm = document.getElementById("addForm")
@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
 
   e.preventDefault();
-  await respRayonData();
+  await promoData();
 
   // ADD NEW ADMIN CENTER
   // addForm.addEventListener('submit', async (e) => {
@@ -33,60 +33,132 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 
 });
 
-// SHOWING ADMINE CENTER LIST IN UI
-const respRayonData = async () => {
+// PROMOTIONS SECTION
+promotionsBtn.addEventListener("click",async (e)=> {
+  e.preventDefault();
+  let content = router("promotions");
+  document.querySelector(".content-container").innerHTML = content
+  await promoData();
+})
 
-  let content = router("respRayonList");
+
+// SHOWING PROMO LIST IN UI
+
+const promoData = async () => {
+
+  let content = router("promotions");
   document.querySelector(".content-container").innerHTML = content;
   
-    const respRayon = await adminCentre.getAllRespRayons()
-    const allRespRayon = await respRayon.data;
-    let template = ``;
-    await allRespRayon.map(respRayon => {
+    const promotions = await responsableRayon.getAllPromos()
+    const promoState = await promotions.succes;
+    const allPromotions = await promotions.data;
+    console.log(typeof(allPromotions));
+    document.getElementById('tbody').innerHTML = ``
+    if(promoState == true){
+      await allPromotions.map(promo => {
       
-      template += `
-        <tr>
-          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-              <div class="flex items-center">
-                  <div class="flex-shrink-0 w-10 h-10">
-                      <img class="w-full h-full rounded-full"
-                          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                          alt="" />
-                  </div>
-                  <div class="ml-3">
-                      <p class="text-gray-900 whitespace-no-wrap">
-                          ${respRayon.nom} ${respRayon.prenom}
-                      </p>
-                  </div>
-              </div>
-          </td>
-          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-              <p class="text-gray-900 whitespace-no-wrap">${respRayon.email}</p>
-          </td>
-          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-              <p class="text-gray-900 whitespace-no-wrap">
-                  Jan 21, 2020
-              </p>
-          </td>
-          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-              <span
-                  class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                  <span aria-hidden
-                      class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                  <span class="relative">${respRayon.status}</span>
-              </span>
-          </td>
-          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-            <button type="button" class="text-xl text-red-600" onclick="deleteRespRayon(${respRayon.id})"><i class="fas fa-trash"></i></button>
-            <button type="button" class="text-xl text-green-600 pl-6"><i class="fas fa-edit"></i></button>
-            <button type="button" class="text-xl text-yellow-600 pl-6"><i class="fas fa-comment-dots"></i></button>
-          </td>
-      </tr>
+        document.getElementById('tbody').innerHTML += `
+          <tr>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <div class="flex items-center">
+                    <div class="ml-3">
+                        <p class="text-gray-900 whitespace-no-wrap">
+                            ${promo.pourcentage}
+                        </p>
+                    </div>
+                </div>
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">${promo.fidelite}</p>
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                    ${promo.statut}
+                </p>
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <p class="text-gray-900 whitespace-no-wrap">
+                    ${promo.de}
+                </p>
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                <span
+                    class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                    <span aria-hidden
+                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                    <span class="relative">${promo.a}</span>
+                </span>
+            </td>
+            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <button type="button" class="text-xl text-red-600" onclick="deletePromo(${promo.id})"><i class="fas fa-trash"></i></button>
+              <button type="button" class="text-xl text-green-600 pl-6"><i class="fas fa-edit"></i></button>
+              <button type="button" class="text-xl text-yellow-600 pl-6"><i class="fas fa-comment-dots"></i></button>
+            </td>
+        </tr>
+        `
+      })
+  
+    }else{
+      document.querySelector(".content-container").innerHTML = `
+      <h1 class="text-center text-3xl">THERE'S NO PROMOTIONS RIGHT NOW !!!</h1>
       `
-    })
-
-    document.getElementById('tbody').innerHTML = template;
+    }
+    
 }
+
+// const promoData = async () => {
+
+//   let content = router("promotions");
+//   document.querySelector(".content-container").innerHTML = content;
+  
+//     const promos = await responsableRayon.getAllPromos()
+//     const allPromos = await promos.data;
+//     let template = ``;
+//     await allPromos.map(promo => {
+      
+//       template += `
+//       <tr>
+//         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+//             <div class="flex items-center">
+//                 <div class="ml-3">
+//                     <p class="text-gray-900 whitespace-no-wrap">
+//                         ${promo.pourcentage}
+//                     </p>
+//                 </div>
+//             </div>
+//         </td>
+//         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+//             <p class="text-gray-900 whitespace-no-wrap">${promo.fidelite}</p>
+//         </td>
+//         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+//             <p class="text-gray-900 whitespace-no-wrap">
+//                 ${promo.statut}
+//             </p>
+//         </td>
+//         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+//             <p class="text-gray-900 whitespace-no-wrap">
+//                 ${promo.de}
+//             </p>
+//         </td>
+//         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+//             <span
+//                 class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+//                 <span aria-hidden
+//                     class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+//                 <span class="relative">${promo.a}</span>
+//             </span>
+//         </td>
+//         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+//           <button type="button" class="text-xl text-red-600" onclick="deletePromo(${promo.id})"><i class="fas fa-trash"></i></button>
+//           <button type="button" class="text-xl text-green-600 pl-6"><i class="fas fa-edit"></i></button>
+//           <button type="button" class="text-xl text-yellow-600 pl-6"><i class="fas fa-comment-dots"></i></button>
+//         </td>
+//       </tr>
+//       `
+//     })
+
+//     document.getElementById('tbody').innerHTML = template;
+// }
 
 // DELETE AN ADMIN CENTER
 window.deleteRespRayon = async (id) => {
