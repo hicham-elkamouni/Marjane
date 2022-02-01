@@ -39,9 +39,9 @@ module.exports = {
             }
             const result = compareSync(body.password , results.password);
             if(result){
-                results.password = undefined;
-                const jsontoken = sign({ result : results }, "qwe1234", {
-                    expiresIn:"1h"
+                // results.password = undefined;
+                const jsontoken = sign({ result : results }, process.env.JWT_SECRET_4ALL, {
+                    expiresIn:"24h"
                 });
                 return res.json({ 
                     success: true,

@@ -44,15 +44,11 @@ const adminCentreData = async () => {
     let template = ``;
     await allAdmins.map(admin => {
       
-      template += `
+      template += 
+      /*html*/`
         <tr>
           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
               <div class="flex items-center">
-                  <div class="flex-shrink-0 w-10 h-10">
-                      <img class="w-full h-full rounded-full"
-                          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                          alt="" />
-                  </div>
                   <div class="ml-3">
                       <p class="text-gray-900 whitespace-no-wrap">
                           ${admin.nom} ${admin.prenom}
@@ -125,12 +121,3 @@ logsBtn.addEventListener("click",(e)=> {
     
 })
 
-
-
-
-  // window.addEventListener("load", ()=>{
-  //     //everything is fully loaded, don't use me if you can use DOMContentLoaded
-  //     console.log("inside load event");
-  //     let content = "injected after getting content"
-  //     document.querySelector(".test").innerHTML = content;
-  // });

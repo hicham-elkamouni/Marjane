@@ -10,9 +10,9 @@ const {
   const { checkToken } = require("../../auth/token_validation")
   
   router.post("/addAdminCentre", createAdminCentre);
-  router.get("/getAdminsCentre", getAdminCentres);
+  router.get("/getAdminsCentre",getAdminCentres);
   router.get("/getAdminsCentre/:id",getAdminCentreById);
-  router.patch("/updateAdminCentre", checkToken,updateAdminCentre);
+  router.patch("/updateAdminCentre", updateAdminCentre);
   // router.delete("/deleteAdminCentre", deleteAdminCentre);
   router.delete("/deleteAdminCentre/:id", deleteAdminCentre);
   router.post("/login", login);

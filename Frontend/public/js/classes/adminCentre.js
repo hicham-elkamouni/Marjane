@@ -11,6 +11,8 @@ export default class AdminCenter {
             email : email,
             password : password
         }
+        
+        // const config = {headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` }}
         let loginRes = await axios.post(BASE_URL+'login',loginFields)
         let loginDetails = await loginRes.data;
         return loginDetails
@@ -24,7 +26,10 @@ export default class AdminCenter {
   static getAllRespRayons = async () => {
       console.log("inside getAllRespRayons method admin center");
       try {
-          let res = await axios.get(BASE_URL+"getAllRespRayon");
+        const config = {
+          headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` }
+         };
+          let res = await axios.get(BASE_URL+"getAllRespRayon", config);
           let respRayonData = await res.data;
           return respRayonData;
       }catch (e) {
@@ -75,7 +80,10 @@ export default class AdminCenter {
   static getAllPromos = async () => {
     console.log("inside getAllPromos method admin center");
     try {
-        let res = await axios.get(BASE_URL+"getAllPromos");
+      const config = {
+        headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` }
+       };
+        let res = await axios.get(BASE_URL+"getAllPromos", config);
         let respRayonData = await res.data;
         return respRayonData;
     }catch (e) {

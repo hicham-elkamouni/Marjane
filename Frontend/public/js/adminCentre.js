@@ -27,7 +27,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       prenom : respRayonForm.firstName.value,
       email : respRayonForm.email.value,
       password : respRayonForm.password.value,
-      status : "active"
+      status : "active",
+      role : "responsable_rayon"
     }
     console.log(RespRayonFields);
     let newRespRayon = await adminCentre.addRespRayon(RespRayonFields)
@@ -40,23 +41,20 @@ window.addEventListener("DOMContentLoaded", async (e) => {
 // SHOWING RESP RAYON LIST IN UI
 const respRayonData = async () => {
 
-  let content = router("respRayonList");
-  document.querySelector(".content-container").innerHTML = content;
+    let content = router("respRayonList");
+    document.querySelector(".content-container").innerHTML = content;
   
     const respRayon = await adminCentre.getAllRespRayons()
     const allRespRayon = await respRayon.data;
     document.getElementById('tbody').innerHTML = ``
     await allRespRayon.map(respRayon => {
       
-      document.getElementById('tbody').innerHTML += `
+      document.getElementById('tbody').innerHTML += 
+      /*html*/`
         <tr>
           <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
               <div class="flex items-center">
-                  <div class="flex-shrink-0 w-10 h-10">
-                      <img class="w-full h-full rounded-full"
-                          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                          alt="" />
-                  </div>
+        
                   <div class="ml-3">
                       <p class="text-gray-900 whitespace-no-wrap">
                           ${respRayon.nom} ${respRayon.prenom}
@@ -96,7 +94,51 @@ window.deleteRespRayon = async (id) => {
   console.log("id you want to delete", id);
   let deletedRespRayon = await adminCentre.deleteRespRayon(id);
   console.log(deletedRespRayon);
-  location.reload();
+  let content = router("respRayonList");
+  document.querySelector(".content-container").innerHTML = content;
+  
+  const respRayon = await adminCentre.getAllRespRayons()
+  const allRespRayon = await respRayon.data;
+  document.getElementById('tbody').innerHTML = ``
+  await allRespRayon.map(respRayon => {
+      
+      document.getElementById('tbody').innerHTML += `
+        <tr>
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <div class="flex items-center">
+        
+                  <div class="ml-3">
+                      <p class="text-gray-900 whitespace-no-wrap">
+                          ${respRayon.nom} ${respRayon.prenom}
+                      </p>
+                  </div>
+              </div>
+          </td>
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p class="text-gray-900 whitespace-no-wrap">${respRayon.email}</p>
+          </td>
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <p class="text-gray-900 whitespace-no-wrap">
+                  ${respRayon.created_at}
+              </p>
+          </td>
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+              <span
+                  class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                  <span aria-hidden
+                      class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                  <span class="relative">${respRayon.status}</span>
+              </span>
+          </td>
+          <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+            <button type="button" class="text-xl text-red-600" onclick="deleteRespRayon(${respRayon.id})"><i class="fas fa-trash"></i></button>
+            <button type="button" class="text-xl text-green-600 pl-6"><i class="fas fa-edit"></i></button>
+            <button type="button" class="text-xl text-yellow-600 pl-6"><i class="fas fa-comment-dots"></i></button>
+          </td>
+      </tr>
+      `
+  })
+  // location.reload();
 }
 
 // RESP RAYON SECTION

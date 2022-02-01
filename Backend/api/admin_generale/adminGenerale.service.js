@@ -3,14 +3,15 @@ const pool = require('../../config/database')
 module.exports = {
     createAdminCentre : (data, callback) => {
         pool.query(
-            `INSERT INTO admin_centre(nom, prenom, email, password, status) 
-            VALUES (?, ?, ?, ?, ?)`,
+            `INSERT INTO admin_centre(nom, prenom, email, password, status, role) 
+            VALUES (?, ?, ?, ?, ?, ?)`,
             [
                 data.nom, 
                 data.prenom,
                 data.email,
                 data.password,
-                data.status
+                data.status,
+                data.role
             ],
             (error, results, fields) => {
                 if(error) {
@@ -70,7 +71,7 @@ module.exports = {
         )
     },
     getAdminCentreByEmail : (email , callback) => {
-        pool.query(`select * from admin_centre where email = ?`,
+        pool.query(`select * from admin_generale where email = ?`,
         [email],
         (error, results, fields) => {
             if (error) {

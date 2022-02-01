@@ -18,13 +18,14 @@ module.exports = {
         })
     },
     createRespRayon : (data, callback) => {
-        pool.query(`INSERT INTO responsable_rayon (nom, prenom, email, password, status) values ( ? , ? , ? , ? , ?)`,
+        pool.query(`INSERT INTO responsable_rayon (nom, prenom, email, password, status, role) values ( ? , ? , ? , ? , ?, ?)`,
         [
             data.nom,
             data.prenom,
             data.email,
             data.password,
-            data.status
+            data.status,
+            data.role,
         ],
         (error, results, fields) => {
             if (error) {

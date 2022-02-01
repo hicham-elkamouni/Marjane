@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         console.log(login)
         if(login.success == true){
             console.log("you're logged in")
+            location.replace("../../pages/dashboard/adminGeneral.html");
         }else{
             console.log("email or password are incorrect")
         };

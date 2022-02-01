@@ -127,9 +127,9 @@ const {
         const result = compareSync(body.password, results.password);
         console.log("this is result " + result);
         if(result){
-          results.password = undefined;
-          const jsontoken = sign({ result : results },"qwe1234",{
-            expiresIn:"1h"
+          // results.password = undefined;
+          const jsontoken = sign({ result : results },process.env.JWT_SECRET_4ALL,{
+            expiresIn:"24h"
           });
           return res.json({
             success : true,
@@ -137,7 +137,7 @@ const {
             token: jsontoken
           });
         }else{
-            return res.json({
+            return res.status(400).json({
               success : false,
               message : "invalid email or password"
             })

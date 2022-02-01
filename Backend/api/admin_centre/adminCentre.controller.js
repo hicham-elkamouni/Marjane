@@ -3,7 +3,7 @@ const { createPromos, createRespRayon, deletePromo, getAllPromos, getAllRaspRayo
 const sendMail = require("../../mail/mailer")
 
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
-const { sign } = require("jsonwebtoken")
+const jwt = require("jsonwebtoken")
 
 
 module.exports = {
@@ -22,9 +22,9 @@ module.exports = {
           const result = compareSync(body.password, results.password);
           console.log("this is result " + result);
           if(result){
-            results.password = undefined;
-            const jsontoken = sign({ result : results },"qwe1234",{
-              expiresIn:"1h"
+            // results.password = undefined;
+            const jsontoken = jwt.sign({ result : results },process.env.JWT_SECRET_4ALL,{
+              expiresIn:"24h"
             });
             return res.json({
               success : true,
@@ -156,6 +156,33 @@ module.exports = {
             })
         })
     },
+    checkAuth : (req , res ) => {
+        const bearer = req?.headers?.authorization;
+        if (!bearer) {
+            return res.status(200).json({ isLogged: false, error: "unauthorized" });
+        }
+        const token = bearer.split(" ")[1];
+   
+        let payload = null
+        try{
+
+        payload = jwt.verify(
+            token,
+            process.env.JWT_SECRET_4ALL
+            );
+            console.log(payload);
+        }catch(err){
+            return res.status(200).json({ isLogged: false, res: "unauthenticated" });
+        }
+        /*  */
+        if (!payload) {
+        return res.status(200).json({ isLogged: false, res: "unauthenticated" });
+        } else {
+        return res.status(201).json({ isLogged: true, res: "authenticated" });
+        }
+
+
+    }
     
 
 };
